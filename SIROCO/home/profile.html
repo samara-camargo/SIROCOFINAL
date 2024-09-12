@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EDITAR PERFIL</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="profilestyle.css">
+</head>
+<body>
+    <div class="container">
+        <h1>EDITAR PERFIL</h1>
+        <div class="profile-picture-container">
+            <img class="profile-picture" src="/imagen/shoyo.jpg" alt="Foto de perfil">
+        </div>
+        <form id="edit-profile-form">
+            <div class="form-group">
+                <label for="name">Nombre</label>
+                <input type="text" id="name" name="name" value="" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Correo Electrónico</label>
+                <input type="email" id="email" name="email" value="" required>
+            </div>
+            <div class="form-actions">
+                <button type="submit">GUARDAR</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        window.onload = function() {
+            const nameInput = document.getElementById('name');
+            const emailInput = document.getElementById('email');
+
+            const savedName = localStorage.getItem('userName');
+            const savedEmail = localStorage.getItem('userEmail');
+
+            if (savedName) {
+                nameInput.value = savedName;
+            }
+            if (savedEmail) {
+                emailInput.value = savedEmail;
+            }
+        };
+        document.getElementById('edit-profile-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+
+            localStorage.setItem('userName', name);
+            localStorage.setItem('userEmail', email);
+
+            window.location.href = 'home.html';
+        });
+    </script>
+</body>
+</html>
